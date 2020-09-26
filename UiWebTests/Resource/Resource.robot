@@ -24,7 +24,15 @@ Digitar o nome do produto "${PRODUTO}" no campo de pesquisa
 Clicar no botão pesquisa
     Click Element   name=submit_search
 
-Conferir se o produto "Blouse" foi listado no site
+Conferir se o produto "${PRODUTO}" foi listado no site
     Wait Until Element Is Visible   css=#center_column > h1
     Title Should Be     Search - My Store
-    Page Should Contain Image   xpath=//*[@id='center_column']//*[@src='http://automationpractice.com/img/p/7/7-home_default.jpg']
+    Page Should Contain Image   xpath=//*[@id='center_column']//*[@src='${URL}/img/p/7/7-home_default.jpg']
+    Page Should Contain Link    xpath=//*[@id="center_column"]//a[@class='product-name'][contains(text(),"${PRODUTO}")]
+
+Conferir mensagem de erro "${MENSAGEM_ALERTA}"
+    Wait Until Element Is Visible   xpath=//*[@id='center_column']/p[@class='alert alert-warning']
+    Element Text Should Be          xpath=//*[@id='center_column']/p[@class='alert alert-warning']  ${MENSAGEM_ALERTA} 
+
+
+
