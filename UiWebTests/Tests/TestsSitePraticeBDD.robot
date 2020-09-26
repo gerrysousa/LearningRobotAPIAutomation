@@ -1,11 +1,7 @@
 ***Settings***
-Library SeleniumLibrary
-Test Setup
-Test Teardown
-
-***Variables***
-${URL}          http://automationpractice.com
-${BROWSERR}     chrome
+Resource        ../Resource/Resource.robot
+Test Setup      Abrir navegador
+Test Teardown   Fechar navegador
 
 ***Test Cases***
 Cenário 01: Pesquisar produto existente
