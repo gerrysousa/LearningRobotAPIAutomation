@@ -23,3 +23,8 @@ Digitar o nome do produto "${PRODUTO}" no campo de pesquisa
 
 Clicar no botão pesquisa
     Click Element   name=submit_search
+
+Conferir se o produto "Blouse" foi listado no site
+    Wait Until Element Is Visible   css=#center_column > h1
+    Title Should Be     Search - My Store
+    Page Should Contain Image   xpath=//*[@id='center_column']//*[@src='http://automationpractice.com/img/p/7/7-home_default.jpg']
