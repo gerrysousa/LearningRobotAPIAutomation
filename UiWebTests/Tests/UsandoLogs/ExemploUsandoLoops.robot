@@ -8,7 +8,7 @@ Documentation   Suíte para exemplificar o uso de LOOPS nos testes
 
 *** Variable ***
 ### Indice     0        1      2     3
-@{FRUTAS}    laranja  banana  uva  abacaxi
+@{LISTA_DE_FRUTAS}    laranja  banana  uva  abacaxi
 
 *** Test Case ***
 Caso de teste usando REPEAT KEYWORD
@@ -19,6 +19,9 @@ Caso de teste usando FOR IN RANGE
 
 Caso de teste usando FOR IN LISTA
     Usando FOR IN LISTA
+
+Caso de teste usando FOR IN ENUMERATE
+    Usando FOR IN ENUMERATE
 
 *** Keywords ***
 Usando Repeat Keyword
@@ -34,7 +37,14 @@ Usando FOR IN RANGE
 
 Usando FOR IN LISTA
     Log To Console  ${\n}
-    FOR  ${FRUTAS}  IN  @{FRUTAS}
-        Log To Console     Meu fruta atual é: ${FRUTAS}! 
-        Log                Meu fruta atual é: ${FRUTAS}! 
+    FOR  ${FRUTAS}  IN  @{LISTA_DE_FRUTAS}
+        Log To Console     A fruta atual é: ${FRUTAS}! 
+        Log                A fruta atual é: ${FRUTAS}! 
+    END
+
+Usando FOR IN ENUMERATE
+    Log To Console  ${\n}
+    FOR     ${INDICE}  ${FRUTAS}  IN ENUMERATE  @{LISTA_DE_FRUTAS}
+        Log To Console     A fruta atual é:${INDICE} --> ${FRUTAS}! 
+        Log                A fruta atual é:${INDICE} --> ${FRUTAS}!
     END
