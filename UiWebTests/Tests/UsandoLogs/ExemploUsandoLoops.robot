@@ -7,8 +7,8 @@ Documentation   Suíte para exemplificar o uso de LOOPS nos testes
 ...             Mas o criador do Robot já disse que estão estudando uma solução!
 
 *** Variable ***
-### Indice     0        1      2     3
-@{LISTA_DE_FRUTAS}    laranja  banana  uva  abacaxi
+### Indice              0        1      2     3         4
+@{LISTA_DE_FRUTAS}    laranja  banana  uva  abacaxi  morango
 
 *** Test Case ***
 Caso de teste usando REPEAT KEYWORD
@@ -22,6 +22,9 @@ Caso de teste usando FOR IN LISTA
 
 Caso de teste usando FOR IN ENUMERATE
     Usando FOR IN ENUMERATE
+
+Caso de teste usando EXIT FOR LOOP
+    Usando EXIT FOR LOOP
 
 *** Keywords ***
 Usando Repeat Keyword
@@ -45,6 +48,14 @@ Usando FOR IN LISTA
 Usando FOR IN ENUMERATE
     Log To Console  ${\n}
     FOR     ${INDICE}  ${FRUTAS}  IN ENUMERATE  @{LISTA_DE_FRUTAS}
-        Log To Console     A fruta atual é:${INDICE} --> ${FRUTAS}! 
-        Log                A fruta atual é:${INDICE} --> ${FRUTAS}!
+        Log To Console     A fruta atual é: ${INDICE} --> ${FRUTAS}! 
+        Log                A fruta atual é: ${INDICE} --> ${FRUTAS}!
+    END
+
+Usando EXIT FOR LOOP
+    Log To Console  ${\n}
+    FOR     ${INDICE}  ${FRUTAS}  IN ENUMERATE  @{LISTA_DE_FRUTAS}
+        Log To Console     A fruta atual é: ${INDICE} --> ${FRUTAS}! 
+        Log                A fruta atual é: ${INDICE} --> ${FRUTAS}!
+        Exit For Loop If   '${FRUTAS}'=='uva'
     END
