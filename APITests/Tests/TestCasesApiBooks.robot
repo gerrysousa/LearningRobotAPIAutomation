@@ -17,8 +17,8 @@ Buscar um livro especifico (GET em um livro especifico)
     Conferir o reason   OK
     Conferir se retorna todos os dados dos livro 15
 
-Test Case - Cadastrar um novo livro
-    Cadastrar um novo livro
+Test Case - Cadastrar um novo livro (padrao)
+    Cadastrar um novo livro (padrao)
     Conferir o status code      200
     Conferir o reason   OK
-    # Conferir se retorna todos os dados dos livro cadastrado 
+    Conferir se retorna todos os dados dos livro cadastrado 

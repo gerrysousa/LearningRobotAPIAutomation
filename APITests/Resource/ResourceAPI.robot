@@ -27,7 +27,7 @@ Requisitar o livro "${ID_LIVRO}"
     Log             ${RESPOSTA.text}
     Set Test Variable  ${RESPOSTA}
 
-Cadastrar um novo livro
+Cadastrar um novo livro (padrao)
     ${HEADERS}      Create Dictionary   content-type=application/json
     ${RESPOSTA}     Post Request    fakeAPI     /api/Books  
     ...                             data={"ID": 2525, "Title": "Book Title", "Description": "Book Description", "PageCount": 189, "Excerpt": "Book Excerpt", "PublishDate": "2018-09-28T09:31:32.327Z"}
@@ -62,3 +62,12 @@ Conferir se retorna todos os dados dos livro 15
     Should Not Be Empty      ${RESPOSTA.json()['Description']}       
     Should Not Be Empty      ${RESPOSTA.json()['Excerpt']}       
     Should Not Be Empty      ${RESPOSTA.json()['PublishDate']}      
+
+
+Conferir se retorna todos os dados dos livro cadastrado
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      ID              2525 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Title           Book Title 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      PageCount       189 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Description     Book Description   
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Excerpt         Book Excerpt
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      PublishDate     2018-09-28T09:31:32.327Z
