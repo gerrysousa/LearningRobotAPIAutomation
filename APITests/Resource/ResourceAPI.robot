@@ -35,9 +35,14 @@ Cadastrar um novo livro (padrao)
     Log             ${RESPOSTA.text}
     Set Test Variable  ${RESPOSTA}
 
-
-
-
+Cadastrar um novo livro passando os parametros
+    [Arguments]    ${BOOK_ID}  ${BOOK_Title}  ${BOOK_Description}  ${BOOK_PageCount}  ${BOOK_Excerpt}  ${BOOK_PublishDate} 
+    ${HEADERS}      Create Dictionary   content-type=application/json
+    ${RESPOSTA}     Post Request    fakeAPI     /api/Books  
+    ...                             data={"ID": ${BOOK_ID}, "Title": ${BOOK_Title}, "Description": ${BOOK_Description}, "PageCount": ${BOOK_PageCount}, "Excerpt": ${BOOK_Excerpt} , "PublishDate": ${BOOK_PublishDate} }
+    ...                             headers=${HEADERS}
+    Log             ${RESPOSTA.text}
+    Set Test Variable  ${RESPOSTA}
 
 
 
