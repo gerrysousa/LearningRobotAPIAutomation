@@ -44,6 +44,18 @@ Cadastrar um novo livro passando os parametros
     Log             ${RESPOSTA.text}
     Set Test Variable  ${RESPOSTA}
 
+Deletar o livro "${ID_LIVRO}"
+    ${RESPOSTA}     Delete Request    fakeAPI     /api/Books/${ID_LIVRO}
+    Log             ${RESPOSTA.text}
+    Set Test Variable  ${RESPOSTA}
+
+Alterar o livro "${ID_LIVRO}"
+    ${HEADERS}      Create Dictionary   content-type=application/json
+    ${RESPOSTA}     Put Request    fakeAPI     /api/Books/${ID_LIVRO} 
+    ...                            data={"ID": ${ID_LIVRO}, "Title": "Title edited", "Description": "Edited Description", "PageCount": 190, "Excerpt": "Edited Excerpt", "PublishDate": "2018-09-28T09:31:32.327Z"}
+    ...                             headers=${HEADERS}
+    Log             ${RESPOSTA.text}
+    Set Test Variable  ${RESPOSTA}
 
 
 
@@ -75,4 +87,13 @@ Conferir se retorna todos os dados dos livro cadastrado
     Dictionary Should Contain Item      ${RESPOSTA.json()}      PageCount       189 
     Dictionary Should Contain Item      ${RESPOSTA.json()}      Description     Book Description   
     Dictionary Should Contain Item      ${RESPOSTA.json()}      Excerpt         Book Excerpt
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      PublishDate     2018-09-28T09:31:32.327Z
+
+
+Conferir se os dados dos livro foram alterados 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      ID              25 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Title           Title edited 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      PageCount       190 
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Description     Edited Description   
+    Dictionary Should Contain Item      ${RESPOSTA.json()}      Excerpt         Edited Excerpt
     Dictionary Should Contain Item      ${RESPOSTA.json()}      PublishDate     2018-09-28T09:31:32.327Z
